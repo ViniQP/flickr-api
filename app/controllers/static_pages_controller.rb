@@ -1,6 +1,5 @@
 class StaticPagesController < ApplicationController
   require 'flickr'
-  require 'json'
 
   def index
     @flickr = Flickr.new
@@ -13,7 +12,8 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def get_userid
-    params.permit(:user_id)
-  end
+  private
+    def get_userid
+      params.permit(:user_id)
+    end
 end
