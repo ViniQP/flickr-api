@@ -1,0 +1,6 @@
+<% @photos.each do |photo| %>
+  <p> <%= photo %> </p>
+  <% photo_info = @flickr.photos.getInfo(:photo_id => photo.id, :secret => photo.secret) %>
+  <p> <%= photo_info %> </p>
+  <img src="<%= Flickr.url_b(photo_info) %>" alt="">
+<% end %>
