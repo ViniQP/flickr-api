@@ -1,6 +1,20 @@
-<% @photos.each do |photo| %>
-  <p> <%= photo %> </p>
-  <% photo_info = @flickr.photos.getInfo(:photo_id => photo.id, :secret => photo.secret) %>
-  <p> <%= photo_info %> </p>
-  <img src="<%= Flickr.url_b(photo_info) %>" alt="">
+<%= render "form" %>
+<br>
+
+<% unless @photos.nil? %>
+  <% unless @info.nil? %>
+    <h1>Latest from <%= @info.username %></h1>
+    <hr>
+  <% else %>
+    <h1>Popular from Flickr</h1>
+    <hr>
+  <% end %>
+  <% @photos.each do |photo| %>
+    <% photo_info = @flickr.photos.getInfo(:photo_id => photo.id, :secret => photo.secret) %>
+    <img src="<%= Flickr.url_b(photo_info) %>" alt="" class="img-size">
+  <% end %>
+  <hr>
+<% else %>
+
+
 <% end %>
